@@ -1,9 +1,9 @@
 import { useState } from "react";
-import FichaContext from "./fichaContext";
+import FichaContext from "./FichaContext";
 
 const FichasProvider = ({ children }) => {
-    const [movimiento, setMovimiento] = useState([]);
-    const [posiColumna, setPosiColumna] = useState(10)
+    const [movimiento, setMovimiento] = useState([0]);
+    const [posiColumna, setPosiColumna] = useState(-1)
     const [decisionMovimiento, setDecisionMovimiento] = useState(false)
     const blancas = [
         [2, 4, 6, 8],
@@ -42,7 +42,7 @@ const FichasProvider = ({ children }) => {
 
         if (color == "negra") {
             if (columna == 1 || columna == 8) {
-                columna == 1 ? setMovimiento({ columnaPositiva: columna + 1, fila: fila - 1, columnaActual: columna, filaActual: fila, columnaParaMover:posiColumna }) : setMovimiento({ columnaNegativa: columna - 1, fila: fila - 1, columnaActual: columna, filaActual: fila })
+                columna == 1 ? setMovimiento({ columnaPositiva: columna + 1, fila: fila - 1, columnaActual: columna, filaActual: fila }) : setMovimiento({ columnaNegativa: columna - 1, fila: fila - 1, columnaActual: columna, filaActual: fila })
             }
             else {
                 setMovimiento({ columnaPositiva: columna + 1, columnaNegativa: columna - 1, fila: fila - 1, columnaActual: columna, filaActual: fila })
@@ -50,10 +50,10 @@ const FichasProvider = ({ children }) => {
         }
         else {
             if (columna == 1 || columna == 8) {
-                columna == 1 ? setMovimiento({ columna: columna + 1, fila: fila + 1, columnaActual: columna, filaActual: fila, columnaParaMover:posiColumna }) : setMovimiento({ columna: columna - 1, fila: fila + 1, columnaActual: columna, filaActual: fila, columnaParaMover:posiColumna })
+                columna == 1 ? setMovimiento({ columna: columna + 1, fila: fila + 1, columnaActual: columna, filaActual: fila }) : setMovimiento({ columna: columna - 1, fila: fila + 1, columnaActual: columna, filaActual: fila })
             }
             else {
-                setMovimiento({ columnaPositiva: columna + 1, columnaNegativa: columna - 1, fila: fila + 1, columnaActual: columna, filaActual: fila, columnaParaMover:posiColumna })
+                setMovimiento({ columnaPositiva: columna + 1, columnaNegativa: columna - 1, fila: fila + 1, columnaActual: columna, filaActual: fila })
             }
         }
         setDecisionMovimiento(false)

@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import './fichas.scss'
 import { Pieza } from './Pieza'
-import FichaContext from '../context/fichaContext'
+import FichaContext from '../context/FichaContext'
 const PieceBlanca = ({ fila, columna }) => {
     const {blancas} = useContext(FichaContext)
     return(

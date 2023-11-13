@@ -1,11 +1,12 @@
-import { useContext } from 'react'
+
+import { useContext, useState } from 'react'
 import './fichas.scss'
 import { Pieza } from './Pieza'
-import FichaContext from '../context/fichaContext'
-const PieceNegra = ({ fila, columna}) => {
-    const { movimiento, negras, setNegras, decisionMovimiento, posiColumna} = useContext(FichaContext)
+import FichaContext from '../context/FichaContext'
+const PieceNegra = ({ fila, columna }) => {
+    const { movimiento, negras, setNegras, decisionMovimiento, posiColumna, setPosiColumna } = useContext(FichaContext)
     return (
-        movimiento.length == 0 && posiColumna == 10 ?
+        movimiento && posiColumna == -1 ?
             negras.map((item, id) => {
                 return item.map((negra) => {
                     if (negra == columna && id + 1 == fila) {
@@ -18,17 +19,26 @@ const PieceNegra = ({ fila, columna}) => {
                 })
             })
             : negras.map((item, id) => {
-                return item.map((negra,idCol) => {
-                    negras[movimiento.fila-1][movimiento.columnaParaMover] = movimiento.columnaParaMover
-                    console.log(movimiento.columnaParaMover)
+                return item.map((negra, idCol) => {
                     if (negra == columna && id + 1 == fila) {
                         if (movimiento.columnaActual == columna && movimiento.filaActual == fila && decisionMovimiento) {
-                            negras[id][idCol] = []
-                            setNegras(negras)
-                            console.log(negras)
+                            console.log(negras[movimiento.fila-1][movimiento.columnaActual])
+                            if (negras[movimiento.fila - 1][movimiento.columnaActual] == undefined) {
+                                negras[movimiento.fila - 1][movimiento.columnaActual] =
+                                    posiColumna
+                            }
+                            else{
+                                negras[movimiento.fila - 1][movimiento.columnaActual+1] =
+                                posiColumna
+                            }
+                            let copiaNegras = negras;
+                            setNegras(copiaNegras)
+
+                            setPosiColumna(-1)
+                            copiaNegras[id][idCol] = [];
                             return (
                                 <>
-                                    <Pieza color={"negra"} filaUbicada={movimiento.fila} columnaUbicada={movimiento.columnaParaMover} key={Math.random() * 100000}/>
+                                    <Pieza color={"negra"} filaUbicada={movimiento.fila} columnaUbicada={posiColumna} key={Math.random() * 100000} />
                                 </>
                             )
                         }
@@ -40,11 +50,10 @@ const PieceNegra = ({ fila, columna}) => {
                             )
                         }
                     }
+
                 })
             })
     )
 }
-/*
-*/
 
 export default PieceNegra

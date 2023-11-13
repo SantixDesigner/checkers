@@ -1,5 +1,5 @@
-import { useContext } from "react"
-import FichaContext from "../context/fichaContext"
+import { useContext, useEffect } from "react"
+import FichaContext from "../context/FichaContext"
 
 export const Pieza = ({color, filaUbicada, columnaUbicada}) => {
     const {posibleMovimiento} = useContext(FichaContext)
