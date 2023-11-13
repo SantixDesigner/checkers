@@ -2,28 +2,30 @@ import { useState } from "react";
 import FichaContext from "./FichaContext";
 
 const FichasProvider = ({ children }) => {
-    const [movimiento, setMovimiento] = useState([0]);
+    const [movimiento, setMovimiento] = useState([0])
     const [posiColumna, setPosiColumna] = useState(-1)
     const [decisionMovimiento, setDecisionMovimiento] = useState(false)
-    const blancas = [
-        [2, 4, 6, 8],
-        [1, 3, 5, 7],
-        [2, 4, 6, 8],
-        [],
-        [],
-        [],
-        [],
-        [],
-    ]
+    const [positivo, setPositivo] = useState(false)
+    const [negativo, setNegativo] = useState(false)
+    const [blancas, setBlancas] = useState([
+        [undefined,2,undefined, 4,undefined, 6,undefined, 8],
+        [1,undefined, 3,undefined, 5,undefined, 7, undefined,],
+        [undefined,2,undefined, 4,undefined, 6,undefined, 8],
+        [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined],
+        [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined],
+        [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined],
+        [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined],
+        [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined],
+    ])
     const [negras, setNegras] = useState([
-        [],
-        [],
-        [],
-        [],
-        [],
-        [1, 3, 5, 7],
-        [2, 4, 6, 8],
-        [1, 3, 5, 7],
+        [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined],
+        [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined],
+        [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined],
+        [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined],
+        [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined],
+        [1, undefined, 3, undefined, 5, undefined, 7, undefined],
+        [undefined, 2, undefined, 4, undefined, 6, undefined, 8],
+        [1, undefined, 3, undefined, 5, undefined, 7, undefined],
     ])
     const filasCheckers = () => {
         const sacarFichas = [
@@ -50,7 +52,7 @@ const FichasProvider = ({ children }) => {
         }
         else {
             if (columna == 1 || columna == 8) {
-                columna == 1 ? setMovimiento({ columna: columna + 1, fila: fila + 1, columnaActual: columna, filaActual: fila }) : setMovimiento({ columna: columna - 1, fila: fila + 1, columnaActual: columna, filaActual: fila })
+                columna == 1 ? setMovimiento({ columnaPositiva: columna + 1, fila: fila + 1, columnaActual: columna, filaActual: fila }) : setMovimiento({ columnaNegativa: columna - 1, fila: fila + 1, columnaActual: columna, filaActual: fila })
             }
             else {
                 setMovimiento({ columnaPositiva: columna + 1, columnaNegativa: columna - 1, fila: fila + 1, columnaActual: columna, filaActual: fila })
@@ -61,7 +63,7 @@ const FichasProvider = ({ children }) => {
     }
 
     return (
-        <FichaContext.Provider value={{ posibleMovimiento, filasCheckers, movimiento, setMovimiento, negras, blancas, setNegras, decisionMovimiento, setDecisionMovimiento, posiColumna, setPosiColumna }}>
+        <FichaContext.Provider value={{ posibleMovimiento, filasCheckers, movimiento, setMovimiento, negras, blancas, setNegras, decisionMovimiento, setDecisionMovimiento, posiColumna, setPosiColumna, positivo, setPositivo, setNegativo, negativo, setBlancas }}>
             {children}
         </FichaContext.Provider>
     )

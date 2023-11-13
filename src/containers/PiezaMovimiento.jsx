@@ -4,7 +4,7 @@ import './fichas.scss'
 import FichaContext from "../context/FichaContext"
 
 const PiezaMovimiento = ({ columna, fila }) => {
-    const { movimiento, setDecisionMovimiento, setPosiColumna, negras } = useContext(FichaContext)
+    const { movimiento, setDecisionMovimiento, setPosiColumna, negras, setNegativo, setPositivo } = useContext(FichaContext)
     if (movimiento.length != 0) {
         if ((movimiento.columnaPositiva == columna || movimiento.columnaNegativa == columna) && movimiento.fila == fila) {
             return (
@@ -12,7 +12,16 @@ const PiezaMovimiento = ({ columna, fila }) => {
                     negras.map((item, id) => {
                         if (id == movimiento.filaActual - 1) {
                             item.map((itemZ, idem) => {
-                                setPosiColumna(columna)
+                                if(e.target.className == "movement movement-negativo"){
+                                    console.log(e.target.className)
+                                    setPosiColumna(columna)
+                                    setNegativo(true)
+                                }
+                                else{
+                                    setPosiColumna(columna)
+                                    setPositivo(true)
+                                }
+                                
                             })
                         }
                     })
