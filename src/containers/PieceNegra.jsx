@@ -37,7 +37,7 @@ const PieceNegra = ({ fila, columna }) => {
                             setNegras(copiaNegras)
                             setPosiColumna(-1)
                             console.log(negras)
-                            copiaNegras[id][idCol] = [];
+                            copiaNegras[id][idCol] = undefined;
                             return (
                                 <>
                                     <Pieza color={"negra"} filaUbicada={movimientoNegra.fila} columnaUbicada={posiColumna} key={Math.random() * 100000} />

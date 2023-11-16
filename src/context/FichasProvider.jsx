@@ -43,26 +43,37 @@ const FichasProvider = ({ children }) => {
         return sacarFichas
     }
     const posibleMovimiento = (fila, columna, color) => {
-
-        if (color == "negra" && color==turno) {
-            console.log("hola")
+        if (color == "negra" && color == turno) {
+            console.log(blancas)
             if (columna == 1 || columna == 8) {
                 columna == 1 ? setMovimientoNegra({ columnaPositiva: columna + 1, fila: fila - 1, columnaActual: columna, filaActual: fila }) : setMovimientoNegra({ columnaNegativa: columna - 1, fila: fila - 1, columnaActual: columna, filaActual: fila })
             }
             else {
-                if(blancas[fila-2][columna+1] && !blancas[fila-3][columna+2]){
-                    setMovimientoNegra({ columnaPositiva: columna + 2, columnaNegativa: columna - 1, fila: fila - 2, columnaActual: columna, filaActual: fila })
-                    blancas[fila-2][columna+1] = undefined
+                if (blancas[fila - 2][columna] && !blancas[fila - 3][columna + 1]) {
+                    if (blancas[fila - 2][columna - 2] && !blancas[fila - 3][columna - 3]) {
+                        setMovimientoNegra({ columnaPositiva: columna + 2, columnaNegativa: columna - 2, fila: fila - 2, columnaActual: columna, filaActual: fila })
+                    }
+                    else {
+                        setMovimientoNegra({ columnaPositiva: columna + 2, columnaNegativa: 9, fila: fila - 2, columnaActual: columna, filaActual: fila })
+                    }
                 }
-                else{
+                else if (blancas[fila - 2][columna - 2] && !blancas[fila - 3][columna - 3]) {
+                    if (blancas[fila - 2][columna] && !blancas[fila - 3][columna - 3]) {
+                        setMovimientoNegra({ columnaPositiva: columna + 2, columnaNegativa: columna - 2, fila: fila - 2, columnaActual: columna, filaActual: fila })
+                    }
+                    else {
+                        setMovimientoNegra({ columnaPositiva: 9, columnaNegativa: columna - 2, fila: fila - 2, columnaActual: columna, filaActual: fila })
+                    }
+                }
+                else {
                     setMovimientoNegra({ columnaPositiva: columna + 1, columnaNegativa: columna - 1, fila: fila - 1, columnaActual: columna, filaActual: fila })
                 }
             }
         }
-        else if (color == "marron" && color==turno) {
+        else if (color == "marron" && color == turno) {
             console.log("hola")
             if (columna == 1 || columna == 8) {
-                columna == 1 ? setMovimientoBlanca({ columnaPositiva: columna + 1, fila: fila + 1, columnaActual: columna, filaActual: fila }) : setMovimientoBlanca({ columnaNegativa: columna - 1, fila: fila + 1, columnaActual: columna, filaActual: fila })
+                columna == 1 ? setMovimientoBlanca({ columnaPositiva: columna + 1, fila: fila + 1, columnaActual: columna, filaActual: fila, columnaNegativa: 9 }) : setMovimientoBlanca({ columnaNegativa: columna - 1, fila: fila + 1, columnaActual: columna, filaActual: fila, columnaPositiva: 9 })
             }
             else {
                 setMovimientoBlanca({ columnaPositiva: columna + 1, columnaNegativa: columna - 1, fila: fila + 1, columnaActual: columna, filaActual: fila })

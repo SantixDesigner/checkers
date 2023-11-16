@@ -22,12 +22,12 @@ const PieceBlanca = ({ fila, columna }) => {
                     if (blanca == columna && id + 1 == fila) {
                         if (movimientoBlanca.columnaActual == columna && movimientoBlanca.filaActual == fila && decisionMovimiento) {
                             if (positivo) {
-                                blancas[movimientoBlanca.fila - 1][movimientoBlanca.columnaActual + 1] =
+                                blancas[movimientoBlanca.fila - 1][movimientoBlanca.columnaPositiva-1] =
                                     posiColumna
                                 setPositivo(!positivo)
                             }
                             else {
-                                blancas[movimientoBlanca.fila - 1][movimientoBlanca.columnaActual - 1] =
+                                blancas[movimientoBlanca.fila - 1][movimientoBlanca.columnaNegativa-1] =
                                     posiColumna
                                 setNegativo(!negativo)
                             }
@@ -35,7 +35,7 @@ const PieceBlanca = ({ fila, columna }) => {
                             setBlancas(copiaBlancas)
                             setPosiColumna(-1)
                             console.log(blancas)
-                            copiaBlancas[id][idCol] = [];
+                            copiaBlancas[id][idCol] = undefined;
                             return (
                                 <>
                                     <Pieza color={"marron"} filaUbicada={movimientoBlanca.fila} columnaUbicada={posiColumna} key={Math.random() * 100000} />
