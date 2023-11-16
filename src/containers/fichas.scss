@@ -1,17 +1,20 @@
-.ficha{
+.ficha {
     max-width: 200px;
     height: 34px;
     border-radius: 50%;
     border: 8px double;
     cursor: pointer;
 }
-.ficha-negra{
+
+.ficha-negra {
     background-color: rgb(117, 117, 117);
 }
-.ficha-marron{
+
+.ficha-marron {
     background-color: rgb(148, 39, 39);
 }
-.movement{
+
+.movement {
     width: 20px;
     height: 20px;
     background-color: rgba($color: #000000, $alpha: 0.3);

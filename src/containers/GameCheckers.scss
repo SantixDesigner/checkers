@@ -1,6 +1,11 @@
 $grey: rgb(200, 200, 200);
 $marr: rgb(52, 13, 13);
-
+.div-turnos{
+    text-align: center;
+    p{
+        font-size: 30px;
+    }
+}
 .checkers {
     display: flex;
     flex-direction: column;
@@ -13,6 +18,7 @@ $marr: rgb(52, 13, 13);
 
 .checkers .fila {
     display: flex;
+
     &:nth-child(odd) .columna:nth-child(odd) {
         background-color: $grey
     }
@@ -20,9 +26,11 @@ $marr: rgb(52, 13, 13);
     &:nth-child(odd) .columna:nth-child(even) {
         background-color: $marr;
     }
+
     &:nth-child(even) .columna:nth-child(odd) {
         background-color: $marr;
     }
+
     &:nth-child(even) .columna:nth-child(even) {
         background-color: $grey;
     }

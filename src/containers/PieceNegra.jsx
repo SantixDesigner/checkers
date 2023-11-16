@@ -4,9 +4,9 @@ import './fichas.scss'
 import { Pieza } from './Pieza'
 import FichaContext from '../context/FichaContext'
 const PieceNegra = ({ fila, columna }) => {
-    const { movimiento, negras, setNegras, decisionMovimiento, posiColumna, setPosiColumna, setPositivo, setNegativo, negativo, positivo } = useContext(FichaContext)
+    const { movimientoNegra, negras, setNegras, decisionMovimiento, posiColumna, setPosiColumna, setPositivo, setNegativo, negativo, positivo, blancas } = useContext(FichaContext)
     return (
-        movimiento && posiColumna == -1 ?
+        movimientoNegra != [0] && posiColumna == -1 ?
             negras.map((item, id) => {
                 return item.map((negra) => {
                     if (negra == columna && id + 1 == fila) {
@@ -21,17 +21,18 @@ const PieceNegra = ({ fila, columna }) => {
             : negras.map((item, id) => {
                 return item.map((negra, idCol) => {
                     if (negra == columna && id + 1 == fila) {
-                        if (movimiento.columnaActual == columna && movimiento.filaActual == fila && decisionMovimiento) {
+                        if (movimientoNegra.columnaActual == columna && movimientoNegra.filaActual == fila && decisionMovimiento) {
                             if (positivo) {
-                                negras[movimiento.fila - 1][movimiento.columnaActual + 1] =
+                                negras[movimientoNegra.fila - 1][movimientoNegra.columnaActual + 1] =
                                     posiColumna
                                 setPositivo(!positivo)
                             }
                             else {
-                                negras[movimiento.fila - 1][movimiento.columnaActual - 1] =
+                                negras[movimientoNegra.fila - 1][movimientoNegra.columnaActual - 1] =
                                     posiColumna
                                 setNegativo(!negativo)
                             }
+
                             let copiaNegras = negras;
                             setNegras(copiaNegras)
                             setPosiColumna(-1)
@@ -39,7 +40,7 @@ const PieceNegra = ({ fila, columna }) => {
                             copiaNegras[id][idCol] = [];
                             return (
                                 <>
-                                    <Pieza color={"negra"} filaUbicada={movimiento.fila} columnaUbicada={posiColumna} key={Math.random() * 100000} />
+                                    <Pieza color={"negra"} filaUbicada={movimientoNegra.fila} columnaUbicada={posiColumna} key={Math.random() * 100000} />
                                 </>
                             )
                         }
