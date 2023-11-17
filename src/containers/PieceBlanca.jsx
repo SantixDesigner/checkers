@@ -34,7 +34,6 @@ const PieceBlanca = ({ fila, columna }) => {
                             let copiaBlancas = blancas;
                             setBlancas(copiaBlancas)
                             setPosiColumna(-1)
-                            console.log(blancas)
                             copiaBlancas[id][idCol] = undefined;
                             return (
                                 <>

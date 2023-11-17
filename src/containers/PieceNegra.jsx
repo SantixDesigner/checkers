@@ -23,20 +23,18 @@ const PieceNegra = ({ fila, columna }) => {
                     if (negra == columna && id + 1 == fila) {
                         if (movimientoNegra.columnaActual == columna && movimientoNegra.filaActual == fila && decisionMovimiento) {
                             if (positivo) {
-                                negras[movimientoNegra.fila - 1][movimientoNegra.columnaActual + 1] =
+                                negras[movimientoNegra.fila - 1][movimientoNegra.columnaActual] =
                                     posiColumna
                                 setPositivo(!positivo)
                             }
                             else {
-                                negras[movimientoNegra.fila - 1][movimientoNegra.columnaActual - 1] =
+                                negras[movimientoNegra.fila - 1][movimientoNegra.columnaActual - 2] =
                                     posiColumna
                                 setNegativo(!negativo)
                             }
-
                             let copiaNegras = negras;
                             setNegras(copiaNegras)
                             setPosiColumna(-1)
-                            console.log(negras)
                             copiaNegras[id][idCol] = undefined;
                             return (
                                 <>

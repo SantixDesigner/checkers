@@ -24,7 +24,7 @@ const GameCheckers = () => {
                                         <PieceBlanca columna={idColumna} fila={i + 1} key={Math.random() * 100000} />
                                         <PieceNegra columna={idColumna} fila={i + 1} key={Math.random() * 100000} />
                                         {
-                                            !decisionMovimiento &&         <PiezaMovimiento columna={idColumna} fila={i + 1} key={Math.random() * 1000000} />
+                                            !decisionMovimiento && <PiezaMovimiento columna={idColumna} fila={i + 1} key={Math.random() * 1000000} />
                                         }
                                     </div>
                                 )
