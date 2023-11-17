@@ -8,6 +8,7 @@ const PiezaMovimiento = ({ columna, fila }) => {
     if (turno == "negra") {
         if (movimientoNegra) {
             if ((movimientoNegra.columnaPositiva == columna || movimientoNegra.columnaNegativa == columna) && movimientoNegra.fila == fila) {
+                
                 return (
                     <div className={columna < movimientoNegra.columnaPositiva ? "movement movement-negativo" : "movement movement-positivo"} onClick={(e) => {
                         negras.map((item, id) => {
@@ -18,17 +19,21 @@ const PiezaMovimiento = ({ columna, fila }) => {
                                         blancas[fila][columna] = undefined
                                         setBlancas(blancas)
                                         setNegativo(true)
+                                        setTimeout(() => {
+                                            setMovimientoNegra([0])
+                                        }, 10)
                                     }
                                     else {
                                         blancas[fila][columna-2] = undefined
                                         setBlancas(blancas)
                                         setPosiColumna(columna)
                                         setPositivo(true)
+                                        setTimeout(() => {
+                                            setMovimientoNegra([0])
+                                        }, 10)
                                     }
                                     setTurno("marron")
-                                    setTimeout(() => {
-                                        setMovimientoNegra([0])
-                                    }, 10)
+
                                 })
                             }
                         })
