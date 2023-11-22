@@ -4,6 +4,7 @@ import PieceBlanca from './PieceBlanca';
 import PiezaMovimiento from './PiezaMovimiento'
 import { useContext } from 'react';
 import FichaContext from '../context/FichaContext';
+import PieceDamaNegra from './PieceNegraDama';
 const GameCheckers = () => {
     //blancas[fila - 1][columna] && !blancas[fila - 2][columna - 1]) {
     const { filasCheckers, movimiento, decisionMovimiento, setPosiColumna, turno, blancas, movimientoNegra } = useContext(FichaContext)
@@ -20,7 +21,7 @@ const GameCheckers = () => {
                             {idFila.map((idColumna) => {
                                 return (
                                     <div key={Math.random() * 100000} className={`fila-${i + 1} columna columna-${idColumna}`}>
-
+                                        <PieceDamaNegra columna={idColumna} fila={i+1} key={[i, idColumna]}/>
                                         <PieceBlanca columna={idColumna} fila={i + 1} key={Math.random() * 100000} />
                                         <PieceNegra columna={idColumna} fila={i + 1} key={Math.random() * 100000} />
                                         {
