@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext} from "react";
 import './fichas.scss'
 import { Pieza } from "./Pieza";
 import FichaContext from "../context/FichaContext";
@@ -22,6 +22,7 @@ const PieceDamaNegra = ({ fila, columna }) => {
                     if (ndama == columna && id + 1 == fila) {
                         if (movimientoDamaNegra.columnaActual == columna && movimientoDamaNegra.filaActual == fila && decisionMovimiento) {
                             console.log(decisionMovimiento)
+                            console.log(posiColumnaDamaNegra)
                             if (positivoAtras) {
                                 negrasDamas[movimientoDamaNegra.filaAtras - 1][movimientoDamaNegra.columnaPositivaAtras - 1] = posiColumnaDamaNegra
                                 setPositivoAtras(!positivoAtras)
